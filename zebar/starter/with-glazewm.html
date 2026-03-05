@@ -152,6 +152,16 @@
           return <i className="nf nf-fa-volume_high"></i>;
         }
 
+        function getAudioVolume(audio){
+          var volume = 0
+          try {
+            return audio.defaultPlaybackDevice.volume;
+          }
+          catch(err){
+            return 0
+          }
+        }
+
         return (
           <div className="app">
             <div className="left">
@@ -254,7 +264,7 @@
               {output.audio && (
                 <div className="audio">
                   {getAudioIcon(output.audio)}
-                  {Math.round(output.audio.defaultPlaybackDevice.volume)}%
+                  {Math.round(getAudioVolume(output.audio))}%
                 </div>
               )}
 
